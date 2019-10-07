@@ -125,7 +125,7 @@ extern "C" {
 
      input and output may alias.
   */
-  void pffftd_transform(PFFFTD_Setup *setup, const double *input, float *output, double *work, pffftd_direction_t direction);
+  void pffftd_transform(PFFFTD_Setup *setup, const double *input, double *output, double *work, pffftd_direction_t direction);
 
   /* 
      Similar to pffft_transform, but makes sure that the output is
