@@ -61,7 +61,7 @@
    NOTE: This file is adapted from Julien Pommier's original PFFFT,
    which works on 32 bit floating point precision using SSE instructions,
    to work with 64 bit floating point precision using AVX instructions.
-   By Dario Mambro @ https://github.com/unevens/pffft
+   Author: Dario Mambro @ https://github.com/unevens/pffft
 */
 
 #include "pffft-double.h"
@@ -92,7 +92,7 @@
 
 /* 
    vector support macros: the rest of the code is independant of
-   SSE/Altivec/NEON -- adding support for other platforms with 4-element
+   AVX -- adding support for other platforms with 4-element
    vectors should be limited to these macros 
 */
 

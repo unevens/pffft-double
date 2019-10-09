@@ -48,7 +48,7 @@
    NOTE: This file is adapted from Julien Pommier's original PFFFT,
    which works on 32 bit floating point precision using SSE instructions,
    to work with 64 bit floating point precision using AVX instructions.
-   By Dario Mambro @ https://github.com/unevens/pffft
+   Author: Dario Mambro @ https://github.com/unevens/pffft
 */
 /*
    PFFFT : a Pretty Fast FFT.
@@ -119,7 +119,7 @@ extern "C" {
      Typically you will want to scale the backward transform by 1/N.
      
      The 'work' pointer should point to an area of N (2*N for complex
-     fft) floats, properly aligned. If 'work' is NULL, then stack will
+     fft) doubles, properly aligned. If 'work' is NULL, then stack will
      be used instead (this is probably the best strategy for small
      FFTs, say for N < 16384).
 
@@ -165,7 +165,7 @@ extern "C" {
   void pffftd_zconvolve_accumulate(PFFFTD_Setup *setup, const double *dft_a, const double *dft_b, double *dft_ab, double scaling);
 
   /*
-    the float buffers must have the correct alignment (32-byte boundary
+    the double buffers must have the correct alignment (32-byte boundary
     on intel and powerpc). This function may be used to obtain such
     correctly aligned buffers.  
   */
