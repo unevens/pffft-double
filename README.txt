@@ -1,10 +1,14 @@
 The original PFFFT library by Julien Pommier is hosted at https://bitbucket.org/jpommier/pffft/src/default/
 
-This repository contains two additional files: pfft-double.h and pfft-double.c, 
+This repository contains three additional files: the first two are pfft-double.h and pfft-double.c, 
 in which is implemented a port of the original library to work with double precision,
 using AVX instructions if they are supported, or otherwise falling back to scalar computations.
+The third is pffft.hpp, which contains a cpp wrapper around both pffft.h and pffft-double.h, using
+a template class to abstract on the float/double data type.
 
 Here follows the original README.txt.
+
+======================================================================
 
 PFFFT: a pretty fast FFT.
 
