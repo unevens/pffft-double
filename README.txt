@@ -1,4 +1,4 @@
-The original PFFFT library by Julien Pommier is hosted at https://bitbucket.org/jpommier/pffft/src/default/
+The original PFFFT library by Julien Pommier -a pretty fast FFT - is hosted at https://bitbucket.org/jpommier/pffft/src/default/
 
 This repository contains three additional files: the first two are pfft-double.h and pfft-double.c, 
 in which is implemented a port of the original library to work with double precision,
