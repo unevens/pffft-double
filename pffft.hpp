@@ -138,6 +138,10 @@ Fft<float>::Setup()
   self = std::unique_ptr<PFFFT_Setup, Deleter>(
     pffft_new_setup(length, static_cast<pffft_transform_t>(type)));
   pffft_aligned_free(work);
+  if (length <= 16384) {
+    work = nullptr;
+    return;
+  }
   int buffer_length = length * sizeof(float);
   if (type == TransformType::Complex) {
     buffer_length *= 2;
@@ -155,6 +159,10 @@ inline void
 Fft<float>::Inverse(float* input, float* output)
 {
   pffft_transform_ordered(self.get(), input, output, work, PFFFT_BACKWARD);
+  float coef = 1.f / (float)length;
+  for (int i = 0; i < length; ++i) {
+    output[i] *= coef;
+  }
 }
 
 inline Fft<double>::Fft(int length, TransformType type)
@@ -169,6 +177,10 @@ Fft<double>::Setup()
   self = std::unique_ptr<PFFFTD_Setup, Deleter>(
     pffftd_new_setup(length, static_cast<pffftd_transform_t>(type)));
   pffftd_aligned_free(work);
+  if (length <= 8192) {
+    work = nullptr;
+    return;
+  }
   int buffer_length = length * sizeof(double);
   if (type == TransformType::Complex) {
     buffer_length *= 2;
@@ -186,6 +198,10 @@ inline void
 Fft<double>::Inverse(double* input, double* output)
 {
   pffftd_transform_ordered(self.get(), input, output, work, PFFFTD_BACKWARD);
+  double coef = 1.0 / (double)length;
+  for (int i = 0; i < length; ++i) {
+    output[i] *= coef;
+  }
 }
 
 }; // namespace pffft
