@@ -200,6 +200,6 @@ main()
   test(8192, profilingIterations, iterationsToSkip);
   test(16384, profilingIterations, iterationsToSkip);
   test(32768, profilingIterations, iterationsToSkip);
-
+  cin.get();
   return 0;
 }
