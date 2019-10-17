@@ -6,6 +6,9 @@ using AVX instructions if they are supported, or otherwise falling back to scala
 The third is pffft.hpp, which contains a cpp wrapper around both pffft.h and pffft-double.h, using
 a template class to abstract on the float/double data type.
 
+See the test folder for a test and a benchmark of pffft-double against the original pffft and
+Takuya OOURA's FFT.
+
 Here follows the original README.txt.
 
 ======================================================================
