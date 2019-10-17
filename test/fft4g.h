@@ -1,4 +1,4 @@
-//wrapped OOURA's fft from https://github.com/avaneev/r8brain-free-src
+//wrapped OOURA's FFT from https://github.com/avaneev/r8brain-free-src
 //$ nobt
 //$ nocpp
 
