@@ -66,6 +66,9 @@
 
 #ifdef COMPILER_MSVC
 #  define _USE_MATH_DEFINES
+#include <malloc.h>
+#else
+#include <alloca.h>
 #endif
 
 #include "pffft.h"
