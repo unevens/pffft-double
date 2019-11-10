@@ -3,7 +3,7 @@ floating point with AVX instructions.
 Author: Dario Mambro @ https://github.com/unevens/pffft */
 
 /*
-PFFFT and my port are redistributed under the original PFFFT license, 
+PFFFT and my port are redistributed under the original PFFFT license,
 see the LICENSE file.
 This wrapper is of public domain.
 
@@ -62,6 +62,7 @@ protected:
 
 public:
   void SetLength(int length);
+  int GetLength() { return length; }
   void SetType(TransformType type);
   virtual ~FftCommon() {}
 };
@@ -204,4 +205,4 @@ Fft<double>::Inverse(double* input, double* output)
   }
 }
 
-}; // namespace pffft
+} // namespace pffft
