@@ -22,7 +22,7 @@ void
 test(int fftLength, int profilingIterations, int numOfIterationsToSkip)
 {
   assert(profilingIterations > 0);
-  assert(numOfIterationsToSkip > 0);
+  assert(numOfIterationsToSkip >= 0);
   assert(profilingIterations > numOfIterationsToSkip);
 
   cout << "testing with fft length = " << fftLength << "\n";
