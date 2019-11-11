@@ -50,12 +50,14 @@ class FftCommon
 protected:
   T* work;
   int length;
+  T invLength;
   TransformType type;
 
   virtual void Setup() = 0;
 
   FftCommon(int length, TransformType type)
     : length(length)
+    , invLength(1.0 / length)
     , type(type)
     , work(nullptr)
   {}
@@ -116,6 +118,7 @@ void
 FftCommon<T>::SetLength(int length_)
 {
   length = length_;
+  invLength = 1.0 / length;
   Setup();
 }
 
@@ -160,9 +163,8 @@ inline void
 Fft<float>::Inverse(float* input, float* output)
 {
   pffft_transform_ordered(self.get(), input, output, work, PFFFT_BACKWARD);
-  float coef = 1.f / (float)length;
   for (int i = 0; i < length; ++i) {
-    output[i] *= coef;
+    output[i] *= invLength;
   }
 }
 
@@ -199,9 +201,8 @@ inline void
 Fft<double>::Inverse(double* input, double* output)
 {
   pffftd_transform_ordered(self.get(), input, output, work, PFFFTD_BACKWARD);
-  double coef = 1.0 / (double)length;
   for (int i = 0; i < length; ++i) {
-    output[i] *= coef;
+    output[i] *= invLength;
   }
 }
 
