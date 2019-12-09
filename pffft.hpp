@@ -91,6 +91,7 @@ public:
   ~Fft() { pffft_aligned_free(work); }
   void Forward(float* input, float* output);
   void Inverse(float* input, float* output);
+  static inline int maxLengthToAllocateOnTheStack = 16384;
 };
 
 template<>
@@ -108,7 +109,8 @@ public:
   Fft(int length, TransformType type = TransformType::Real);
   ~Fft() { pffftd_aligned_free(work); }
   void Forward(double* input, double* output);
-  void Inverse(double* input, double* output);
+  void Inverse(double* input, double* output);  
+  static inline int maxLengthToAllocateOnTheStack = 8192;
 };
 
 // implementation
@@ -142,7 +144,7 @@ Fft<float>::Setup()
   self = std::unique_ptr<PFFFT_Setup, Deleter>(
     pffft_new_setup(length, static_cast<pffft_transform_t>(type)));
   pffft_aligned_free(work);
-  if (length <= 16384) {
+  if (length <= maxLengthToAllocateOnTheStack) {
     work = nullptr;
     return;
   }
@@ -180,7 +182,7 @@ Fft<double>::Setup()
   self = std::unique_ptr<PFFFTD_Setup, Deleter>(
     pffftd_new_setup(length, static_cast<pffftd_transform_t>(type)));
   pffftd_aligned_free(work);
-  if (length <= 8192) {
+  if (length <= maxLengthToAllocateOnTheStack) {
     work = nullptr;
     return;
   }
