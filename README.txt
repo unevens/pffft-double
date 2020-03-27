@@ -1,3 +1,5 @@
+Use https://github.com/marton78/pffft instead. This repository is getting merged into it.
+
 The original PFFFT library by Julien Pommier -a pretty fast FFT - is hosted at https://bitbucket.org/jpommier/pffft/src/default/
 
 This repository contains three additional files: the first two are pfft-double.h and pfft-double.c, 
